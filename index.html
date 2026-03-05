@@ -2,6 +2,8 @@
 <html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
 
 <head>
+	<script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script>	
 	<base href="https://cdn.jsdelivr.net/gh/Greenfenix414/rota-1file/index.html">
 	<meta charset='utf-8' />
 	<meta name='viewport' content='width=device-width, user-scalable=no' />
@@ -198,10 +200,9 @@
 			}
 			return parts;
 		}
-		ho
 		Promise.all([
-			mergeFiles(getParts("index.pck", 1, 9)),
-			mergeFiles(getParts("index.wasm", 1, 9)),
+			mergeFiles(getParts("https://cdn.jsdelivr.net/gh/Greenfenix414/rota-1file/index.pck", 1, 9)),
+			mergeFiles(getParts("https://cdn.jsdelivr.net/gh/Greenfenix414/rota-1file/index.wasm", 1, 9)),
 		]).then(([pckUrl, wasmUrl]) => {
 			window.fetch = async function (url, ...args) {
 				if (url.endsWith("index.pck")) {
@@ -212,7 +213,7 @@
 					return realFetch(url, ...args);
 				}
 			};
-			window.godotrunfunction();
+			window.startGodot();
 		});</script>
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
@@ -220,7 +221,7 @@
 		const GODOT_CONFIG = { "args": [], "canvasResizePolicy": 2, "executable": "index", "experimentalVK": false, "fileSizes": { "index.pck": 49941136, "index.wasm": 19721321 }, "focusCanvas": true, "gdnativeLibs": [] };
 		var engine = new Engine(GODOT_CONFIG);
 
-		(function () {
+		function startGodot () {
 			const INDETERMINATE_STATUS_STEP_MS = 100;
 			var statusProgress = document.getElementById('status-progress');
 			var statusProgressInner = document.getElementById('status-progress-inner');
@@ -319,7 +320,7 @@
 					initializing = false;
 				}, displayFailureNotice);
 			}
-		})();
+		};
 		//]]></script>
 </body>
 
